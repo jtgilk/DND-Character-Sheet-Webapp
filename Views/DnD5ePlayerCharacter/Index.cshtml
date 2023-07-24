@@ -1,0 +1,107 @@
+﻿@model IEnumerable<DND_Character_Sheet_Webapp.Models.DnD5ePlayerCharacter>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charStrength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charDexterity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charConstitution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charIntelligence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charWisdom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.charCharisma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HitPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Background)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alignment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Race)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charStrength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charDexterity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charConstitution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charIntelligence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charWisdom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.charCharisma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HitPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Background)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alignment)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
