@@ -18,19 +18,63 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="padding-top: 10px; padding-bottom: 10px;" class="form-group">
                 <label asp-for="Race" class="control-label"></label>
-                <input asp-for="Race" class="form-control" />
+                <select asp-for="Race">
+                    <option value="Dragonborn">Dragonborn</option>
+                    <option value="Dwarf">Dwarf</option>
+                    <option value="Elf">Elf</option>
+                    <option value="Gnome">Gnome</option>
+                    <option value="Half-Elf">Half-Elf</option>
+                    <option value="Half-Orc">Half-Orc</option>
+                    <option value="Halfling">Halfling</option>
+                    <option value="Human">Human</option>
+                    <option value="Tiefling">Tiefling</option>
+                </select>
                 <span asp-validation-for="Race" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="padding-top: 10px; padding-bottom: 10px;" class="form-group">
                 <label asp-for="Class" class="control-label"></label>
-                <input asp-for="Class" class="form-control" />
+                <select asp-for="Class">
+                    <option value="Barbarian">Barbarian</option>
+                    <option value="Bard">Bard</option>
+                    <option value="Cleric">Cleric</option>
+                    <option value="Druid">Druid</option>
+                    <option value="Fighter">Fighter</option>
+                    <option value="Monk">Monk</option>
+                    <option value="Paladin">Paladin</option>
+                    <option value="Ranger">Ranger</option>
+                    <option value="Rogue">Rogue</option>
+                    <option value="Sorcerer">Sorcerer</option>
+                    <option value="Warlock">Warlock</option>
+                    <option value="Wizard">Wizard</option>
+                </select>
                 <span asp-validation-for="Class" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="padding-top: 10px; padding-bottom: 10px;" class="form-group">
                 <label asp-for="Level" class="control-label"></label>
-                <input asp-for="Level" class="form-control" />
+                <select asp-for="Level">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
                 <span asp-validation-for="Level" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -73,12 +117,24 @@
                 <input asp-for="Background" class="form-control" />
                 <span asp-validation-for="Background" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="padding-top: 10px; padding-bottom: 10px;" class="form-group">
                 <label asp-for="Alignment" class="control-label"></label>
-                <input asp-for="Alignment" class="form-control" />
+                <select asp-for="Alignment">
+                    <option value="Lawful Good">Lawful Good</option>
+                    <option value="Neutral Good">Neutral Good</option>
+                    <option value="Chaotic Good">Chaotic Good</option>
+                    <option value="Lawful Neutral">Lawful Neutral</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Chaotic Neutral">Chaotic Neutral</option>
+                    <option value="Lawful Evil">Lawful Evil</option>
+                    <option value="Neutral Evil">Neutral Evil</option>
+                    <option value="Chaotic Evil">Chaotic Evil</option>
+                </select>
                 <span asp-validation-for="Alignment" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div style ="padding-top: 10px; padding-bottom: 10px;" class="form-group">
+                
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
