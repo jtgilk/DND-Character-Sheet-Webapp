@@ -1,0 +1,86 @@
+﻿@model DND_Character_Sheet_Webapp.Models.DnD5eWeapon
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>DnD5eWeapon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightInPounds" class="control-label"></label>
+                <input asp-for="WeightInPounds" class="form-control" />
+                <span asp-validation-for="WeightInPounds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostInGoldPieces" class="control-label"></label>
+                <input asp-for="CostInGoldPieces" class="form-control" />
+                <span asp-validation-for="CostInGoldPieces" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeaponType" class="control-label"></label>
+                <select asp-for="WeaponType" class="form-control">
+                    <option value="Sword">Sword</option>
+                    <option value="Axe">Axe</option>
+                    <option value="Bow">Bow</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Dagger">Dagger</option>
+                    <option value="Hammer">Hammer</option>
+                    <option value="Mace">Mace</option>
+                    <option value="Spear">Spear</option>
+                    <option value="Polearm">Polearm</option>
+                    <option value="Mace">Club</option>
+                    <option value="Spear">Crossbow</option>
+                    <option value="Polearm">Thrown</option>
+                </select>
+                <span asp-validation-for="WeaponType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageDice" class="control-label"></label>
+                <input asp-for="DamageDice" class="form-control" />
+                <span asp-validation-for="DamageDice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfDice" class="control-label"></label>
+                <input asp-for="NumberOfDice" class="form-control" />
+                <span asp-validation-for="NumberOfDice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BonusDamage" class="control-label"></label>
+                <input asp-for="BonusDamage" class="form-control" />
+                <span asp-validation-for="BonusDamage" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsMagical" /> @Html.DisplayNameFor(model => model.IsMagical)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

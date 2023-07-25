@@ -1,0 +1,72 @@
+﻿@model DND_Character_Sheet_Webapp.Models.DnD5eWeapon
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DnD5eWeapon</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WeightInPounds)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WeightInPounds)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CostInGoldPieces)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CostInGoldPieces)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WeaponType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WeaponType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DamageDice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DamageDice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfDice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfDice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BonusDamage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BonusDamage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsMagical)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsMagical)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
