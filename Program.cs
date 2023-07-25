@@ -1,6 +1,11 @@
 using DND_Character_Sheet_Webapp.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+using System.Data;
+using System.Security.Cryptography;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,3 +46,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+

@@ -10,87 +10,87 @@ using DND_Character_Sheet_Webapp.Models;
 
 namespace DND_Character_Sheet_Webapp.Controllers
 {
-    public class DnD5ePlayerCharacterController : Controller
+    public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DnD5ePlayerCharacterController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: DnD5ePlayerCharacter
+        // GET: Users
         public async Task<IActionResult> Index()
         {
-              return _context.DnD5ePlayerCharacter != null ? 
-                          View(await _context.DnD5ePlayerCharacter.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.DnD5ePlayerCharacter'  is null.");
+              return _context.User != null ? 
+                          View(await _context.User.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.User'  is null.");
         }
 
-        // GET: DnD5ePlayerCharacter/Details/5
+        // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.DnD5ePlayerCharacter == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var dnD5ePlayerCharacter = await _context.DnD5ePlayerCharacter
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (dnD5ePlayerCharacter == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(dnD5ePlayerCharacter);
+            return View(user);
         }
 
-        // GET: DnD5ePlayerCharacter/Create
+        // GET: Users/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: DnD5ePlayerCharacter/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Player,Name,Race,Class,Level,charStrength,charDexterity,charConstitution,charIntelligence,charWisdom,charCharisma,HitPoints,Background,Alignment")] DnD5ePlayerCharacter dnD5ePlayerCharacter)
+        public async Task<IActionResult> Create([Bind("Id,Username,Email,EmailNormalized,Password")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dnD5ePlayerCharacter);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(dnD5ePlayerCharacter);
+            return View(user);
         }
 
-        // GET: DnD5ePlayerCharacter/Edit/5
+        // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.DnD5ePlayerCharacter == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var dnD5ePlayerCharacter = await _context.DnD5ePlayerCharacter.FindAsync(id);
-            if (dnD5ePlayerCharacter == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(dnD5ePlayerCharacter);
+            return View(user);
         }
 
-        // POST: DnD5ePlayerCharacter/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Player,Name,Race,Class,Level,charStrength,charDexterity,charConstitution,charIntelligence,charWisdom,charCharisma,HitPoints,Background,Alignment")] DnD5ePlayerCharacter dnD5ePlayerCharacter)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email,EmailNormalized,Password")] User user)
         {
-            if (id != dnD5ePlayerCharacter.Id)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 try
                 {
-                    _context.Update(dnD5ePlayerCharacter);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DnD5ePlayerCharacterExists(dnD5ePlayerCharacter.Id))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace DND_Character_Sheet_Webapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(dnD5ePlayerCharacter);
+            return View(user);
         }
 
-        // GET: DnD5ePlayerCharacter/Delete/5
+        // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.DnD5ePlayerCharacter == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var dnD5ePlayerCharacter = await _context.DnD5ePlayerCharacter
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (dnD5ePlayerCharacter == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(dnD5ePlayerCharacter);
+            return View(user);
         }
 
-        // POST: DnD5ePlayerCharacter/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.DnD5ePlayerCharacter == null)
+            if (_context.User == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.DnD5ePlayerCharacter'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.User'  is null.");
             }
-            var dnD5ePlayerCharacter = await _context.DnD5ePlayerCharacter.FindAsync(id);
-            if (dnD5ePlayerCharacter != null)
+            var user = await _context.User.FindAsync(id);
+            if (user != null)
             {
-                _context.DnD5ePlayerCharacter.Remove(dnD5ePlayerCharacter);
+                _context.User.Remove(user);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DnD5ePlayerCharacterExists(int id)
+        private bool UserExists(int id)
         {
-          return (_context.DnD5ePlayerCharacter?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

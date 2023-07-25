@@ -11,7 +11,7 @@
         public string? Notes { get; set; }
 
 
-        // Weapon Constructor
+        // Item Constructor
         public DnD5ePlayerItem()
         {
         }
