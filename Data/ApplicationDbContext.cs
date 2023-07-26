@@ -14,5 +14,6 @@ namespace DND_Character_Sheet_Webapp.Data
         public DbSet<DND_Character_Sheet_Webapp.Models.DnD5eWeapon> DnD5eWeapon { get; set; } = default!;
         public DbSet<DND_Character_Sheet_Webapp.Models.DnD5ePlayerItem> DnD5ePlayerItem { get; set; } = default!;
         public DbSet<DND_Character_Sheet_Webapp.Models.User> User { get; set; } = default!;
+        public DbSet<DND_Character_Sheet_Webapp.Models.Spell> Spell { get; set; } = default!;
     }
 }

@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DND_Character_Sheet_Webapp.Models.Spell>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    #cssTable td {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Spell Level
+            </th>
+            <th>
+                Casting Time
+            </th>
+            <th>
+                School
+            </th>
+            <th>
+                Dice
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Range)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Save)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Effect)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Components)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string URLName = item.Name;
+            URLName = URLName.Replace(" ", "-");
+            URLName = URLName.Replace("’", "");
+            string BaseUrl = "https://www.dndbeyond.com/spells/";
+            string URL = $"{BaseUrl}" + $"{URLName}";
+
+
+            <tr>
+                <td>
+                    <a href=@URL>@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpellLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CastingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.School)
+                </td>
+                <td>
+                    @ViewBag.SpellDice[item.Id]
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Range)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Save)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Effect)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Components)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

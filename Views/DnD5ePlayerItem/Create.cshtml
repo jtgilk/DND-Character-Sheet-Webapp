@@ -20,37 +20,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Item Name</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label">Description</label>
-                <div>
-                    <textarea asp-for="Description" class="form-control" wrap="hard" /></textarea>
-                </div>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WeightInPounds" class="control-label">Weight in Pounds</label>
-                <input asp-for="WeightInPounds" class="form-control" />
-                <span asp-validation-for="WeightInPounds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CostInGoldPieces" class="control-label">Value in Gold Pieces</label>
-                <textarea asp-for="CostInGoldPieces" class="form-control" wrap="hard" placeholder="If the item has no measurable value or is worthless, enter 0" /></textarea>
-                <span asp-validation-for="CostInGoldPieces" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label">Notes</label>
-                <input asp-for="Notes" class="form-control" placeholder="Enter your notes here..." />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group" >
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            <partial name="_ItemForm" />
         </form>
     </div>
 </div>

@@ -1,0 +1,93 @@
+﻿@model DND_Character_Sheet_Webapp.Models.Spell
+
+<style>
+    .form-group {
+        padding-top: 7px; /* Set your desired top padding here */
+        padding-bottom: 7px; /* Set your desired bottom padding here */
+    }
+
+    .control-label {
+        font-size: 1em;
+        font-weight: bold;
+    }
+</style>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="Name" class="control-label">Spell Name</label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Description" class="control-label">Spell Description</label>
+    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholer="Enter the spell description." })
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="SpellLevel" class="control-label">Spell Level</label>
+    <select asp-for="School" asp-items="@ViewBag.SpellLevels"></select>
+    <span asp-validation-for="SpellLevel" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="CastingTime" class="control-label">Casting Time</label>
+    @Html.TextAreaFor(model => model.CastingTime, new { @class = "form-control", placeholer="Instantaneous, minutes, round, hours, etc." })
+    <span asp-validation-for="CastingTime" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="School" class="control-label">Spell School</label>
+    <select asp-for="School" asp-items="@ViewBag.SpellSchools"></select>
+    <span asp-validation-for="School" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DamageDice" class="control-label">Damage/Healing die</label>
+    <input asp-for="DamageDice" class="form-control" placeholder="Ex. the 8 in 2d8" />
+    <span asp-validation-for="DamageDice" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="NumberOfDice" class="control-label">Number of damage/healing die</label>
+    <input asp-for="NumberOfDice" class="form-control" placeholder="Ex. the 2 in 2d8" />
+    <span asp-validation-for="NumberOfDice" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Bonus" class="control-label">Bonus</label>
+    <input asp-for="Bonus" class="form-control" placeholder="Ex. the 1 in 2d8+1" />
+    <span asp-validation-for="Bonus" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Range" class="control-label">Range</label>
+    @Html.TextAreaFor(model => model.Range, new { @class = "form-control", placeholer="Touch, ft, self, etc." })
+    <span asp-validation-for="Range" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Duration" class="control-label">Duration</label>
+    @Html.TextAreaFor(model => model.Duration, new { @class = "form-control", placeholer="Rounds, minutes, hours, days, etc." })
+    <span asp-validation-for="Duration" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Save" class="control-label">Save</label>
+    <select asp-for="Save" asp-items="@ViewBag.SpellSaves"></select>
+    <span asp-validation-for="Save" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Effect" class="control-label">Effect</label>
+    <select asp-for="Effect" asp-items="@ViewBag.SpellEffects"></select>
+    <span asp-validation-for="Effect" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Components" class="control-label">Spell Components</label>
+    @Html.TextAreaFor(model => model.Components, new { @class = "form-control", placeholer="Ex. &quot;diamonds worth 300 gp, which the spell consumes.&quot; Leave blank if nothing is required" })
+    <span asp-validation-for="Components" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="IsConcentration" /> Concentration required
+    </label>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="IsRitual" /> Ritual Spell
+    </label>
+</div>
+<div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</div>

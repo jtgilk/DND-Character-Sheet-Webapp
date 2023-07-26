@@ -169,7 +169,5 @@ namespace DND_Character_Sheet_Webapp.Controllers
 
             }
         }
-
-
     }
 }

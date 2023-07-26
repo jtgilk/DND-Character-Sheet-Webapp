@@ -19,25 +19,19 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WeightInPounds)
+                Weight
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CostInGoldPieces)
+                Gold Value
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WeaponType)
+                Weapon Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DamageDice)
+                Dice
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumberOfDice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BonusDamage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsMagical)
+                Magic?
             </th>
             <th></th>
         </tr>
@@ -61,13 +55,7 @@
                 @Html.DisplayFor(modelItem => item.WeaponType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DamageDice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfDice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BonusDamage)
+                @ViewBag.WeaponDice[item.Id]
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsMagical)

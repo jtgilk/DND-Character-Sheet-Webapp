@@ -1,19 +1,17 @@
-﻿@model DND_Character_Sheet_Webapp.Models.DnD5eWeapon
+﻿@model DND_Character_Sheet_Webapp.Models.Spell
 
 @{
     ViewData["Title"] = "Create";
 }
 
-
-
 <h1>Create</h1>
 
-<h4>DnD5eWeapon</h4>
+<h4>Spell</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <partial name="_WeaponForm" />
+            <partial name="_SpellsForm" />
         </form>
     </div>
 </div>

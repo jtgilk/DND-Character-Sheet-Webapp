@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DND_Character_Sheet_Webapp.Data;
 using DND_Character_Sheet_Webapp.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.AccessControl;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Data.SqlClient;
+using DND_Character_Sheet_Webapp.Data.Migrations;
 
 namespace DND_Character_Sheet_Webapp.Controllers
 {
@@ -22,9 +27,10 @@ namespace DND_Character_Sheet_Webapp.Controllers
         // GET: DnD5eWeapon
         public async Task<IActionResult> Index()
         {
-              return _context.DnD5eWeapon != null ? 
-                          View(await _context.DnD5eWeapon.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.DnD5eWeapon'  is null.");
+            TableBuild();
+            return _context.DnD5eWeapon != null ?
+                        View(await _context.DnD5eWeapon.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.DnD5eWeapon'  is null.");
         }
 
         // GET: DnD5eWeapon/Details/5
@@ -48,6 +54,7 @@ namespace DND_Character_Sheet_Webapp.Controllers
         // GET: DnD5eWeapon/Create
         public IActionResult Create()
         {
+            OnGet();
             return View();
         }
 
@@ -60,6 +67,8 @@ namespace DND_Character_Sheet_Webapp.Controllers
         {
             if (ModelState.IsValid)
             {
+                dnD5eWeapon.Name = dnD5eWeapon.Name.Trim();
+                dnD5eWeapon.Description = dnD5eWeapon.Description.Trim();
                 _context.Add(dnD5eWeapon);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -80,6 +89,7 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 return NotFound();
             }
+            OnGet();
             return View(dnD5eWeapon);
         }
 
@@ -99,6 +109,8 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 try
                 {
+                    dnD5eWeapon.Name = dnD5eWeapon.Name.Trim();
+                    dnD5eWeapon.Description = dnD5eWeapon.Description.Trim();
                     _context.Update(dnD5eWeapon);
                     await _context.SaveChangesAsync();
                 }
@@ -150,14 +162,76 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 _context.DnD5eWeapon.Remove(dnD5eWeapon);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DnD5eWeaponExists(int id)
         {
-          return (_context.DnD5eWeapon?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.DnD5eWeapon?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        public void OnGet()
+        {
+            List<SelectListItem> weapons = new List<SelectListItem>
+          {
+            new SelectListItem { Value = "Sword", Text = "Sword" },
+            new SelectListItem { Value = "Axe", Text = "Axe" },
+            new SelectListItem { Value = "Bow", Text = "Bow" },
+            new SelectListItem { Value = "Staff", Text = "Staff" },
+            new SelectListItem { Value = "Dagger", Text = "Dagger" },
+            new SelectListItem { Value = "Hammer", Text = "Hammer" },
+            new SelectListItem { Value = "Mace", Text = "Mace" },
+            new SelectListItem { Value = "Spear", Text = "Spear" },
+            new SelectListItem { Value = "Polearm", Text = "Polearm" },
+            new SelectListItem { Value = "Club", Text = "Club" },
+            new SelectListItem { Value = "Crossbow", Text = "Crossbow" },
+            new SelectListItem { Value = "Thrown", Text = "Thrown" }
+          };
+            ViewBag.Weapons = weapons;
+        }
+        public void TableBuild()
+        {
+            string connectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=5eDB";
+            string sqlQuery = "SELECT Id, NumberOfDice, DamageDice, BonusDamage FROM DnD5eWeapon;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Process the data returned by the query
+                        Dictionary<int, string> WeaponDice = new Dictionary<int, string>();
+                        while (reader.Read())
+                        {
+                            // Access data using column names
+                            int spellId = (int)reader["Id"];
+                            var NumberOfDice = reader["NumberOfDice"] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("NumberOfDice")) : 0;
+                            var DamageDice = reader["DamageDice"] != DBNull.Value ? reader.GetInt32(reader.GetOrdinal("DamageDice")) : 0;
+                            string bonusString = reader["BonusDamage"] != DBNull.Value ? reader["BonusDamage"].ToString() : "0";
+                            int bonus;
+                            if (int.TryParse(bonusString, out bonus))
+                            {
+                                // Conversion successful
+                                // "bonus" contains the int value from the string
+                            }
+                            else
+                            {
+                                // Conversion failed, set "bonus" to 0
+                                bonus = 0;
+                            }
+                            string HandeledDice = $"{NumberOfDice}d{DamageDice}+{bonus}";
+                            WeaponDice.Add(spellId, HandeledDice);
+                            // ... (and so on for other columns)
+                        }
+                        ViewBag.WeaponDice = WeaponDice;
+                    }
+                }
+            }
         }
     }
 }

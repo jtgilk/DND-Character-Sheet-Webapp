@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DND_Character_Sheet_Webapp.Data;
 using DND_Character_Sheet_Webapp.Models;
+using DND_Character_Sheet_Webapp.Data.Migrations;
 
 namespace DND_Character_Sheet_Webapp.Controllers
 {
@@ -60,6 +61,10 @@ namespace DND_Character_Sheet_Webapp.Controllers
         {
             if (ModelState.IsValid)
             {
+                dnD5ePlayerItem.Name = dnD5ePlayerItem.Name.Trim();
+                dnD5ePlayerItem.Description = dnD5ePlayerItem.Description.Trim();
+                dnD5ePlayerItem.Notes = dnD5ePlayerItem.Notes?.Trim();
+                dnD5ePlayerItem.Notes = dnD5ePlayerItem.Notes?.Substring(0, 1).ToUpper() + dnD5ePlayerItem.Notes?.Substring(1);
                 _context.Add(dnD5ePlayerItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,6 +104,10 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 try
                 {
+                    dnD5ePlayerItem.Name = dnD5ePlayerItem.Name.Trim();
+                    dnD5ePlayerItem.Description = dnD5ePlayerItem.Description.Trim();
+                    dnD5ePlayerItem.Notes = dnD5ePlayerItem.Notes?.Trim();
+                    dnD5ePlayerItem.Notes = dnD5ePlayerItem.Notes?.Substring(0, 1).ToUpper() + dnD5ePlayerItem.Notes?.Substring(1);
                     _context.Update(dnD5ePlayerItem);
                     await _context.SaveChangesAsync();
                 }
