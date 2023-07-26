@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DND_Character_Sheet_Webapp.Data;
 using DND_Character_Sheet_Webapp.Models;
+using System.Text.RegularExpressions;
 
 namespace DND_Character_Sheet_Webapp.Controllers
 {
@@ -133,5 +134,42 @@ namespace DND_Character_Sheet_Webapp.Controllers
         {
           return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        //protected void registerBtnSubmit_Click(object sender, EventArgs e)
+        //{
+        //    // Retrieve user input from the text box
+        //    string EmailInput = txtEmail.Text;
+
+        //    // Call your validation method with the user input
+        //    bool isValid = ValidateUserInput(username);
+
+        //    // Process the validation result (e.g., display a message)
+        //    if (isValid)
+        //    {
+        //        // User input is valid, proceed with further actions
+        //    }
+        //    else
+        //    {
+        //        // User input is not valid, show an error message or take appropriate action
+        //    }
+        //}
+
+        static void EmailCheck(string EmailInput)
+        {
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            string userEmailInput = EmailInput; // Replace this with the input email address
+
+            if (Regex.IsMatch(userEmailInput, emailPattern))
+            {
+                string validEmail = userEmailInput;
+            }
+            else
+            {
+
+            }
+        }
+
+
     }
 }

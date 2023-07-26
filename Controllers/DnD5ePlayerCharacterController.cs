@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DND_Character_Sheet_Webapp.Data;
 using DND_Character_Sheet_Webapp.Models;
+using Microsoft.CodeAnalysis.Options;
+using Newtonsoft.Json.Linq;
 
 namespace DND_Character_Sheet_Webapp.Controllers
 {
@@ -22,9 +25,9 @@ namespace DND_Character_Sheet_Webapp.Controllers
         // GET: DnD5ePlayerCharacter
         public async Task<IActionResult> Index()
         {
-              return _context.DnD5ePlayerCharacter != null ? 
-                          View(await _context.DnD5ePlayerCharacter.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.DnD5ePlayerCharacter'  is null.");
+            return _context.DnD5ePlayerCharacter != null ?
+                        View(await _context.DnD5ePlayerCharacter.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.DnD5ePlayerCharacter'  is null.");
         }
 
         // GET: DnD5ePlayerCharacter/Details/5
@@ -48,6 +51,7 @@ namespace DND_Character_Sheet_Webapp.Controllers
         // GET: DnD5ePlayerCharacter/Create
         public IActionResult Create()
         {
+            OnGet();
             return View();
         }
 
@@ -80,6 +84,7 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 return NotFound();
             }
+            OnGet();
             return View(dnD5ePlayerCharacter);
         }
 
@@ -150,14 +155,78 @@ namespace DND_Character_Sheet_Webapp.Controllers
             {
                 _context.DnD5ePlayerCharacter.Remove(dnD5ePlayerCharacter);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DnD5ePlayerCharacterExists(int id)
         {
-          return (_context.DnD5ePlayerCharacter?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.DnD5ePlayerCharacter?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        
+        //Alignment select list
+        public void OnGet()
+        {
+            List<SelectListItem> Alignments = new List<SelectListItem>
+          {
+            new SelectListItem {Value = "Lawful Good", Text = "Lawful Good"},
+            new SelectListItem {Value = "Neutral Good", Text = "Neutral Good" },
+            new SelectListItem {Value = "Chaotic Good", Text = "Chaotic Good"  },
+            new SelectListItem {Value = "Lawful Neutral", Text = "Lawful Neutral" },
+            new SelectListItem {Value = "Neutral", Text = "Neutral"  },
+            new SelectListItem {Value = "Chaotic Neutral", Text = "Chaotic Neutral"},
+            new SelectListItem {Value = "Lawful Evil", Text = "Lawful Evil"},
+            new SelectListItem {Value = "Neutral Evil", Text = "Neutral Evil"},
+            new SelectListItem {Value = "Chaotic Evil", Text = "Chaotic Evil"},
+          };
+            ViewBag.Alignments = Alignments;
+
+        //Level select list
+            List<SelectListItem> levelsList = new List<SelectListItem>();
+
+            for (int i = 1; i <= 20; i++)
+            {
+                levelsList.Add(new SelectListItem
+                {
+                    Text = i.ToString(),
+                    Value = i.ToString()
+                });
+            }
+            ViewBag.Levels = levelsList;
+
+            //Class select list
+            List<SelectListItem> Classes = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Barbarian", Text = "Barbarian" },
+            new SelectListItem { Value = "Bard", Text = "Bard" },
+            new SelectListItem { Value = "Cleric", Text = "Cleric" },
+            new SelectListItem { Value = "Druid", Text = "Druid" },
+            new SelectListItem { Value = "Fighter", Text = "Fighter" },
+            new SelectListItem { Value = "Monk", Text = "Monk" },
+            new SelectListItem { Value = "Paladin", Text = "Paladin" },
+            new SelectListItem { Value = "Ranger", Text = "Ranger" },
+            new SelectListItem { Value = "Rogue", Text = "Rogue" },
+            new SelectListItem { Value = "Sorcerer", Text = "Sorcerer" },
+            new SelectListItem { Value = "Warlock", Text = "Warlock" },
+            new SelectListItem { Value = "Wizard", Text = "Wizard" }
+        };
+            ViewBag.Classes = Classes;
+
+            //Race select list
+            List<SelectListItem> Races = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Dragonborn", Text = "Dragonborn" },
+            new SelectListItem { Value = "Dwarf", Text = "Dwarf" },
+            new SelectListItem { Value = "Elf", Text = "Elf" },
+            new SelectListItem { Value = "Gnome", Text = "Gnome" },
+            new SelectListItem { Value = "Half-Elf", Text = "Half-Elf" },
+            new SelectListItem { Value = "Half-Orc", Text = "Half-Orc" },
+            new SelectListItem { Value = "Halfling", Text = "Halfling" },
+            new SelectListItem { Value = "Human", Text = "Human" },
+            new SelectListItem { Value = "Tiefling", Text = "Tiefling" }
+        };
+            ViewBag.Races = Races;
         }
     }
 }
