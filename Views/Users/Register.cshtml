@@ -32,9 +32,13 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:Button ID="registerBtnSubmit" runat="server" Text="Create" OnClick="registerBtnSubmit_Click" />
+
+@*            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            </div>*@
         </form>
     </div>
 </div>
