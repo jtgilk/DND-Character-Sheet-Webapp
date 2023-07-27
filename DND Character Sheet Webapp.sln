@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DND Character Sheet Webapp", "DND Character Sheet Webapp.csproj", "{091510BC-462E-4D7D-863B-2FBACE0FC5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTesting", "UnitTesting\UnitTesting.csproj", "{D5ED7034-3BC4-4FA3-A477-C1690C628750}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{091510BC-462E-4D7D-863B-2FBACE0FC5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{091510BC-462E-4D7D-863B-2FBACE0FC5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{091510BC-462E-4D7D-863B-2FBACE0FC5DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5ED7034-3BC4-4FA3-A477-C1690C628750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5ED7034-3BC4-4FA3-A477-C1690C628750}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5ED7034-3BC4-4FA3-A477-C1690C628750}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5ED7034-3BC4-4FA3-A477-C1690C628750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

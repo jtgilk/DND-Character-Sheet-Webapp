@@ -1,6 +1,8 @@
 # DND Character Sheet Webapp
 This is a simple webapp that stores player's DnD characters in a database. It also stores weapons, items, and spells the player may create.
 
+Hit the Initial Setup Button on the homepage when you first run it to create the database, as well as populate it with some things I made while testing.
+
 It's straight forward, the entire app can be accessed from the header bar links and the following pages should clearly state how to edit, create, or delete entries.
 
 For project requirements the project has examples of:

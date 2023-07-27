@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DND_Character_Sheet_Webapp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230725232058_Users")]
-    partial class Users
+    [Migration("20230727002230_SubmitStage")]
+    partial class SubmitStage
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,6 +156,72 @@ namespace DND_Character_Sheet_Webapp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DnD5eWeapon");
+                });
+
+            modelBuilder.Entity("DND_Character_Sheet_Webapp.Models.Spell", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Bonus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CastingTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Components")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DamageDice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Effect")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsConcentration")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRitual")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NumberOfDice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Range")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Save")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpellLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Spell");
                 });
 
             modelBuilder.Entity("DND_Character_Sheet_Webapp.Models.User", b =>
